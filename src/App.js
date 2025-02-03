@@ -1,17 +1,20 @@
 /**
- * App.js
+/* App.js
+*/
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
 	const [price, setPrice] = useState(null);
-	const BUY_PRICE = 60000; // Defina seu preço de compra
+
+  const BACKEND_URL = "http://localhost:3351";
+	const BUY_PRICE = 94000; // Defina seu preço de compra
 
 	useEffect(() => {
 		const fetchPrice = async () => {
 			try {
-				const response = await axios.get("http://localhost:5000/price");
+        const response = await axios.get(`${BACKEND_URL}/btc-price`);
 				setPrice(response.data.price);
 			} catch (error) {
 				console.error("Erro ao obter preço:", error);
@@ -30,17 +33,24 @@ function App() {
 		return "Aguardando oportunidade...";
 	};
 
+  const sendAlerts = async () => {
+    await fetch(`${BACKEND_URL}/send-alerts`, { method: 'POST' });
+  };
+
 	return (
 		<div style={{ textAlign: "center", marginTop: "50px" }}>
 			<h1>Bot de Monitoramento BTC</h1>
 			<h2>Preço Atual: {price ? `$${price}` : "Carregando..."}</h2>
 			<h3>Decisão: {tradeDecision()}</h3>
+      <button  onClick={sendAlerts}>Enviar Alerta</button>
+
 		</div>
 	);
 }
 
 export default App;
-*/
+
+/** 
 import { useState, useEffect } from 'react';
 
 const BACKEND_URL = "http://localhost:3351";
@@ -92,3 +102,5 @@ function App() {
 }
 
 export default App;
+
+ */
