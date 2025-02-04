@@ -67,8 +67,8 @@ function App() {
             <h2>Preço Médio (últimas 24h): {averagePrice ? `$${averagePrice}` : "Carregando..."}</h2>
             <h3>Decisão: {tradeDecision()}</h3>
 
-            <h2>Maior Preço (dia anterior - 24h): {highestPrice ? `$${highestPrice}` : "Carregando..."}</h2>
-            <h2>Menor Preço (dia anterior - 24h): {lowestPrice ? `$${lowestPrice}` : "Carregando..."}</h2>
+            <h2>Maior Preço (últimas 24h): {highestPrice ? `$${highestPrice}` : "Carregando..."}</h2>
+            <h2>Menor Preço (últimas 24h): {lowestPrice ? `$${lowestPrice}` : "Carregando..."}</h2>
             <h3>{recommendation}</h3>
             <br />
             <button onClick={sendAlerts}>Enviar Alerta ao Grupo (Telegram)</button>
